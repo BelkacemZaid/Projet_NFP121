@@ -1,61 +1,48 @@
 package licence.projetnfp121.data;
 
-import java.util.Date;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+
+@Getter
+@Setter
+@Entity
+@Table(name = "devoir")
 public class Devoir {
+    @Id
+    @Column(name = "idDev", nullable = false)
+    private Integer id;
 
+    @Size(max = 50)
+    @Column(name = "description", length = 50)
     private String description;
-    private int categorie;
-    private Date dateCreation;
-    private Double coefficient;
 
-    private Matiere matiere;
+    @Size(max = 50)
+    @Column(name = "categorie", length = 50)
+    private String categorie;
 
-    public Devoir(String description, int categorie, Date dateCreation, Double coefficient, Matiere matiere) {
-        this.description = description;
-        this.categorie = categorie;
-        this.dateCreation = dateCreation;
-        this.coefficient = coefficient;
-        this.matiere = matiere;
-    }
+    @Column(name = "date_crea")
+    private LocalDate dateCrea;
 
-    public String getDescription() {
-        return description;
-    }
+    @Column(name = "coef", precision = 15, scale = 2)
+    private BigDecimal coef;
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    @NotNull
+    @Column(name = "idClasse", nullable = false)
+    private Integer idClasse;
 
-    public int getCategorie() {
-        return categorie;
-    }
+    @Size(max = 50)
+    @NotNull
+    @Column(name = "idMat", nullable = false, length = 50)
+    private String idMat;
 
-    public void setCategorie(int categorie) {
-        this.categorie = categorie;
-    }
 
-    public Date getDateCreation() {
-        return dateCreation;
-    }
-
-    public void setDateCreation(Date dateCreation) {
-        this.dateCreation = dateCreation;
-    }
-
-    public Double getCoefficient() {
-        return coefficient;
-    }
-
-    public void setCoefficient(Double coefficient) {
-        this.coefficient = coefficient;
-    }
-
-    public Matiere getMatiere() {
-        return matiere;
-    }
-
-    public void setMatiere(Matiere matiere) {
-        this.matiere = matiere;
-    }
 }

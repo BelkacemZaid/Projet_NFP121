@@ -1,41 +1,30 @@
 package licence.projetnfp121.data;
 
-import jakarta.persistence.*;
-import lombok.Data;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Entity
+@Table(name = "classe")
 public class Classe {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "idClasse", nullable = false)
+    private Integer id;
 
-    @Column(nullable = false)
+    @Size(max = 50)
+    @Column(name = "denomination", length = 50)
     private String denomination;
 
-    public Classe(Long id, String denomination) {
-        this.id = id;
-        this.denomination = denomination;
-    }
+    @NotNull
+    @Column(name = "idEtud", nullable = false)
+    private Integer idEtud;
 
-    public Classe() {
 
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getDenomination() {
-        return denomination;
-    }
-
-    public void setDenomination(String denomination) {
-        this.denomination = denomination;
-    }
 }
