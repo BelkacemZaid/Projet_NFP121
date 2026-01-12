@@ -1,4 +1,4 @@
-package licence.projetnfp121.controller;
+package licence.projetnfp121.Services;
 
 
 import licence.projetnfp121.repository.ClasseRepository;
