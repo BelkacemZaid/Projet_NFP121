@@ -1,40 +1,27 @@
 spring:
   application:
     name: ProjetNFP121
-
   datasource:
-<<<<<<< HEAD
     url: jdbc:mysql://localhost:3308/projetnfp121
     username: root
     password: root123
-=======
-    url: jdbc:mysql://localhost:3306/projetnfp12
-    username: root
-    password:
->>>>>>> 67f4c4df15df53ccbbb5cf87a00fd7f4971adb72
     driver-class-name: com.mysql.cj.jdbc.Driver
-
   jpa:
     hibernate:
-<<<<<<< HEAD
-      ddl-auto: validate   # dev: update / create-drop, prod: validate/none
-=======
-      ddl-auto: validate
+      ddl-auto: update
       naming:
-        physical-strategy:  org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
         implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyHbmImpl
->>>>>>> 67f4c4df15df53ccbbb5cf87a00fd7f4971adb72
     properties:
       hibernate:
         format_sql: true
     open-in-view: false
 
+server:
+  port: 8082
+
 logging:
   level:
-<<<<<<< HEAD
     org.hibernate.SQL: debug
-    org.hibernate.orm.jdbc.bind: trace   # Boot 3 / Hibernate 6 (paramètres SQL)
-=======
     org.hibernate.sql: debug
     org.hibernate.orm.jdbc.bind: trace
->>>>>>> 67f4c4df15df53ccbbb5cf87a00fd7f4971adb72
