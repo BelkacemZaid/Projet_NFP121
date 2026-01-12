@@ -1,7 +1,7 @@
 package licence.projetnfp121.controller;
 
 import licence.projetnfp121.data.Etudiant;
-import licence.projetnfp121.data.EtudiantRepository;
+import licence.projetnfp121.repository.EtudiantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
