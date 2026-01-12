@@ -24,14 +24,11 @@ public class EtudiantService {
         return etudiantRepository.findById(id).orElse(null);
     }
 
-    @GetMapping("/classe/{classe_id}")
-    public  List<Etudiant> getEtudiantsByClasseId(@PathVariable Long classeId){
-        return etudiantRepository.getEtudiantsByClasse_Id(classeId);
-    }
+
 
     @GetMapping("/disponible")
     public List<Etudiant> getEtudiantsDisponible(){
-        return etudiantRepository.getEtudiantsByClasse(null);
+        return null;
     }
 
     @PostMapping("/add")

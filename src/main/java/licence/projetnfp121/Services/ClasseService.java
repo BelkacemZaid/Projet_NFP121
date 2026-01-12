@@ -1,11 +1,12 @@
 package licence.projetnfp121.Services;
 
-
+import licence.projetnfp121.data.Classe;
 import licence.projetnfp121.repository.ClasseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 
 @RestController
 @RequestMapping("/classes")

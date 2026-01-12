@@ -5,6 +5,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -33,83 +35,15 @@ public class Devoir {
     private BigDecimal coef;
 
     @NotNull
-    @Column(name = "idClasse", nullable = false)
-    private Integer idClasse;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "idClasse", nullable = false)
+    private Classe idClasse;
 
-//    @Size(max = 50)
-//    @NotNull
-//    @Column(name = "idMat", nullable = false, length = 50)
-//    private String idMat;
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "idMat", nullable = false)
+    private Matiere idMat;
 
-    @ManyToOne
-    @JoinColumn(name="idMat")
-    private Matiere matieres;
 
-    @ManyToOne
-    @JoinColumn(name="idClasse")
-    private Classe classes;
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getCategorie() {
-        return categorie;
-    }
-
-    public void setCategorie(String categorie) {
-        this.categorie = categorie;
-    }
-
-    public LocalDate getDateCrea() {
-        return dateCrea;
-    }
-
-    public void setDateCrea(LocalDate dateCrea) {
-        this.dateCrea = dateCrea;
-    }
-
-    public BigDecimal getCoef() {
-        return coef;
-    }
-
-    public void setCoef(BigDecimal coef) {
-        this.coef = coef;
-    }
-
-    public Matiere getMatieres() {
-        return matieres;
-    }
-
-    public void setMatieres(Matiere matieres) {
-        this.matieres = matieres;
-    }
-
-    public Integer getIdClasse() {
-        return idClasse;
-    }
-
-    public void setIdClasse(Integer idClasse) {
-        this.idClasse = idClasse;
-    }
-
-    public Classe getClasses() {
-        return classes;
-    }
-
-    public void setClasses(Classe classes) {
-        this.classes = classes;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 }
