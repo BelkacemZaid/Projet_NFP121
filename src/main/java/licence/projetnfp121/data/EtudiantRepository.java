@@ -7,4 +7,6 @@ import java.util.List;
 public interface EtudiantRepository extends JpaRepository<Etudiant, Long> {
 
     List<Etudiant> getEtudiantsByClasse_Id(Long classeId);
+    
+    List<Etudiant> getEtudiantsByClasse(Classe classe);
 }
