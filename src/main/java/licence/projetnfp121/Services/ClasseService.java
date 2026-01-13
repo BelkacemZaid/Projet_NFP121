@@ -3,29 +3,35 @@ package licence.projetnfp121.Services;
 import licence.projetnfp121.data.Classe;
 import licence.projetnfp121.repository.ClasseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 
-@RestController
-@RequestMapping("/classes")
+@Service
 public class ClasseService {
-    @Autowired
-    private ClasseRepository classeRepository;
+    private final  ClasseRepository classeRepository;
 
-    @GetMapping("/")
-    List<Classe> getAllClasses() {
+    @Autowired
+    public ClasseService(ClasseRepository classeRepository) {
+        this.classeRepository = classeRepository;
+    }
+
+
+    public List<Classe> getAllClasses() {
         return classeRepository.findAll();
     }
 
-    @GetMapping("/{id}")
-    Classe getClasseById(@PathVariable Long id){
+    public Classe getClasseById(@PathVariable Long id){
         return classeRepository.findById(id).orElse(null);
     }
 
-    @PostMapping("/add")
-    void addClasse(@RequestBody Classe classe){
+    public void addClasse(@RequestBody Classe classe){
         classeRepository.save(classe);
+    }
+
+    public void deleteClasse(@PathVariable Long id){
+        classeRepository.deleteById(id);
     }
 }

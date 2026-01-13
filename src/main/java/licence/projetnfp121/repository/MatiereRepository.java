@@ -1,4 +1,9 @@
 package licence.projetnfp121.repository;
 
-public interface MatiereRepository {
+import licence.projetnfp121.data.Matiere;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface MatiereRepository extends JpaRepository<Matiere,Long> {
 }

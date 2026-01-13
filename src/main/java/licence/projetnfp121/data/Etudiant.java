@@ -1,17 +1,14 @@
 package licence.projetnfp121.data;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+
 @Entity
-@Table(name = "etudiant")
+@Data
 public class Etudiant {
     @Id
     @Column(name = "idEtud", nullable = false)
@@ -27,6 +24,9 @@ public class Etudiant {
 
     @Column(name = "photo")
     private Boolean photo;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Classe classe;
 
 
 }

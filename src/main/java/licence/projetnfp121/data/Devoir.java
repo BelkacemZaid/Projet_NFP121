@@ -34,10 +34,14 @@ public class Devoir {
     @Column(name = "coef", precision = 15, scale = 2)
     private BigDecimal coef;
 
+    @Column(name = "note", precision = 15, scale = 2)
+    private BigDecimal note;
+
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "idClasse", nullable = false)
-    private Classe idClasse;
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "idEtudiant", nullable = false)
+    private Classe idEtudiant;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
