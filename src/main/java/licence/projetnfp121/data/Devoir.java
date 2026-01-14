@@ -12,7 +12,6 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
-@Table(name = "devoir")
 public class Devoir {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

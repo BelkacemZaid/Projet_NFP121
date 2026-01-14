@@ -8,8 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface DevoirRepository extends JpaRepository<Devoir,Long> {
 
     @Override
-    <S extends Devoir> S save(S entity);
-
-    @Override
     void delete(Devoir entity);
+
+
 }
