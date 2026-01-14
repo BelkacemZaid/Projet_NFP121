@@ -28,10 +28,20 @@ public class ClasseService {
     }
 
     public Classe addClasse( Classe classe){
-        return classeRepository.save(classe);//celle la pas encore
+        return classeRepository.save(classe);//cet methode marche
+        //ici je doit faire la logique metier de ajouter des etudiant si il n'ont pas de classe
+    }
+
+    public Classe updateClasse(Classe classe){
+        return classeRepository.save(classe);
+        //ici je doit faire la logique metier d'ajouter des etudiant disponible
     }
 
     public void deleteClasse(@PathVariable Long id){
         classeRepository.deleteById(id); //cet methode marche
+
+        //ici la logique mettier lorsque classe supprimer idclasse devient null donc disponible
     }
+
+    //creer une methode pour afficher le bultin pour chaque etudiant, sa moyenne par matiere et moyenne general
 }

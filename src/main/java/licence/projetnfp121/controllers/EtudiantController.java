@@ -5,6 +5,8 @@ import licence.projetnfp121.data.Etudiant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/etudiants")
 public class EtudiantController {
@@ -22,8 +24,20 @@ public class EtudiantController {
         etudiantService.addEtudiant(etudiant);
     }
 
-    @PostMapping("/deleteEtudiantById/{id}")
+    @DeleteMapping("/deleteEtudiantById/{id}")
     public void deleteEtudiantById(@PathVariable Long id){
         etudiantService.deleteEtudiant(id);
     }
+
+    @GetMapping("/getEtudiant")
+    public List<Etudiant> findAll(){
+        return  etudiantService.getEtudiants();
+    }
+
+    @PutMapping("/modifyEtudiant")
+    public void UpdateEtudiant(@RequestBody Etudiant etudiant){
+        etudiantService.UpdateEtudiant(etudiant);
+    }
+
+
 }
