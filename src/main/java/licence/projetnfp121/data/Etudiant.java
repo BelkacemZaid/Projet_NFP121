@@ -1,16 +1,17 @@
 package licence.projetnfp121.data;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-
+@Getter
+@Setter
 @Entity
-@Data
 public class Etudiant {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idEtud", nullable = false)
     private Integer id;
 
@@ -22,11 +23,13 @@ public class Etudiant {
     @Column(name = "prenom", length = 50)
     private String prenom;
 
-    @Column(name = "photo")
-    private Boolean photo;
+    @Size(max = 50)
+    @Column(name = "photo", length = 50)
+    private String photo;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Classe classe;
-
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "idClasse", nullable = false)
+    private Classe idClasse;
 
 }

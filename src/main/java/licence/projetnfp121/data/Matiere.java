@@ -1,9 +1,6 @@
 package licence.projetnfp121.data;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,13 +11,12 @@ import lombok.Setter;
 @Table(name = "matiere")
 public class Matiere {
     @Id
-    @Size(max = 50)
-    @Column(name = "idMat", nullable = false, length = 50)
-    private String idMat;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idMat", nullable = false)
+    private Integer id;
 
     @Size(max = 50)
     @Column(name = "denomination", length = 50)
     private String denomination;
-
 
 }

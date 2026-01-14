@@ -4,7 +4,6 @@ import licence.projetnfp121.data.Matiere;
 import licence.projetnfp121.repository.MatiereRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RestController;
 
 @Service
 public class MatiereService {

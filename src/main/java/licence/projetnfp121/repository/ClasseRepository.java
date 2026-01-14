@@ -4,14 +4,29 @@ import licence.projetnfp121.data.Classe;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface ClasseRepository extends JpaRepository<Classe, Long> {
 
-    @Override
-    <S extends Classe> S save(S entity);
+//    @Override
+//    <S extends Classe> S save(S entity);
 
     @Override
     void delete(Classe entity);
+
+    List<Classe> findById(Integer id);
+
+    List<Classe> findAll();
+
+
+
+
+
+
+
+
+
 
 
 

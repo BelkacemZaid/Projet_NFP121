@@ -27,11 +27,11 @@ public class ClasseService {
         return classeRepository.findById(id).orElse(null);
     }
 
-    public void addClasse(@RequestBody Classe classe){
-        classeRepository.save(classe);
+    public Classe addClasse( Classe classe){
+        return classeRepository.save(classe);//celle la pas encore
     }
 
     public void deleteClasse(@PathVariable Long id){
-        classeRepository.deleteById(id);
+        classeRepository.deleteById(id); //cet methode marche
     }
 }
