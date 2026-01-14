@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/matieres")
 public class MatiereController {
+    @Autowired
     private MatiereService matiereService;
 
-    @Autowired
     public MatiereController(MatiereService matiereService) {
         this.matiereService = matiereService;
     }
@@ -21,10 +21,14 @@ public class MatiereController {
         matiereService.addMatiere(matiere);
     }
 
+<<<<<<< Updated upstream
     @PutMapping("/modify")
     public void modifyMatiere(@RequestBody Matiere matiere) {
         matiereService.modifyMatiere(matiere);
     }
+=======
+
+>>>>>>> Stashed changes
 
     @GetMapping("/deleteMatiereById/{id}")
     public void deleteMatiere(@PathVariable Long id) {

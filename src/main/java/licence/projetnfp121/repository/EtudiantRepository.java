@@ -17,6 +17,7 @@ public interface EtudiantRepository extends JpaRepository<Etudiant, Long> {
 
 
 
+
     @Override
     <S extends Etudiant> S save(S entity);
 

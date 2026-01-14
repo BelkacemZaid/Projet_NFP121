@@ -36,10 +36,28 @@ public class Devoir {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "idClasse", nullable = false)
     private Classe idClasse;
+<<<<<<< Updated upstream
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "idMat", nullable = false)
     private Matiere idMat;
+=======
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "idMat", nullable = false)
+    private Matiere idMat;
+
+    @Column(name = "note", precision = 15, scale = 2)
+    private BigDecimal note;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "idEtudiant", nullable = false)
+    private Classe idEtudiant;
+
+>>>>>>> Stashed changes
 
 }

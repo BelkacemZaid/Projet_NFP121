@@ -9,6 +9,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+<<<<<<< Updated upstream
+=======
+@Table(name = "Etudiant")
+>>>>>>> Stashed changes
 public class Etudiant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,9 +27,23 @@ public class Etudiant {
     @Column(name = "prenom", length = 50)
     private String prenom;
 
+<<<<<<< Updated upstream
     @Size(max = 50)
     @Column(name = "photo", length = 50)
     private String photo;
+=======
+    @Column(name = "photo")
+    private Boolean photo;
+
+    @NotNull
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "idClasse", nullable = false)
+    private Classe idClasse;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "classe")
+    private Classe classe;
+>>>>>>> Stashed changes
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
