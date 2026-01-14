@@ -15,33 +15,48 @@ public class EtudiantService {
     @Autowired
     private EtudiantRepository etudiantRepository;
 
+    Etudiant etudiant;
+
 
     public EtudiantService(EtudiantRepository etudiantRepository) {
         this.etudiantRepository = etudiantRepository;
     }
 
-    @GetMapping("/")
+
     public List<Etudiant> getEtudiants(){
         return etudiantRepository.findAll();
     }
 
-    @GetMapping("/{id}")
-    public Etudiant getEtudiantById(@PathVariable Long id){
-        return etudiantRepository.findById(id).get();
+
+    public List<Etudiant> getEtudiantById( Integer id){
+        return  etudiantRepository.findAllById( id);
     }
 
-    @GetMapping("/classe/{idclasse}")
-    List<Etudiant> getEtudiantsByIdClasse(@PathVariable Classe idclasse){
+
+    public  List<Etudiant> getEtudiantsByIdClasse( Classe idclasse){
         return etudiantRepository.findByIdClasse(idclasse);
     }
 
 
-    @PostMapping("/add")
-    public void addEtudiant(@RequestBody Etudiant etudiant){
-        etudiantRepository.save(etudiant);
+
+    public Etudiant addEtudiant( Etudiant etudiant){
+       return etudiantRepository.save(etudiant);
     }
 
     public void deleteEtudiant(Long id) {
         etudiantRepository.deleteById(id);
     }
+
+    public Etudiant UpdateEtudiant( Etudiant etudiant){
+        return etudiantRepository.save(etudiant);// j'utilise save pcq on peux modifier avec si se que je veux modifier n'existe pas sa le creer si sa existe sa l'ecrase et sa permet de modifier
+    }
+
+//    public List<Etudiant> updateEtudiant(String nom, String nouveaunom ,String nouveauPrenom){ //on aura besoin de l'objet etudiant le modifier
+//        etudiantRepository.findByNom(nom);
+//        etudiant.setNom(nouveaunom);
+//        etudiant.setPrenom(nouveauPrenom);
+//
+//        return etudiantRepository.save(Etudiant);
+//
+//    }
 }

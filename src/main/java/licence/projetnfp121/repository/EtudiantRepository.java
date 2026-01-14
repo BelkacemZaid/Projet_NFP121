@@ -13,13 +13,21 @@ public interface EtudiantRepository extends JpaRepository<Etudiant, Long> {
 
     List<Etudiant> findByIdClasse(Classe idClasse);
 
-    List<Devoir> findById(Integer id);
+    List<Etudiant> findAllById(Integer id);
+
+    List<Etudiant> findAll();
 
 
 
-
-    @Override
-    <S extends Etudiant> S save(S entity);
+//    @Override
+//    <S extends Etudiant> S save(S entity);
 
     void deleteEtudiantById(Integer id);
+
+//    List<Etudiant> id(Integer id);
+
+    List<Etudiant> findByNom(String nom);
+
+
+
 }

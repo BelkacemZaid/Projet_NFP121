@@ -30,7 +30,9 @@ public class ClasseController {
 
     @PostMapping("/add")
     public void addClasse(@RequestBody Classe classe){
+
         classeService.addClasse(classe);
+
     }
 
     @GetMapping("/deleteClassesByid/{id}")
