@@ -5,6 +5,7 @@ import licence.projetnfp121.data.Matiere;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
 @RequestMapping("/matieres")
 public class MatiereController {
@@ -16,8 +17,13 @@ public class MatiereController {
     }
 
     @PostMapping("/add")
-    public void addMatiere(@RequestParam Matiere matiere) {
+    public void addMatiere(@RequestBody Matiere matiere) {
         matiereService.addMatiere(matiere);
+    }
+
+    @PutMapping("/modify")
+    public void modifyMatiere(@RequestBody Matiere matiere) {
+        matiereService.modifyMatiere(matiere);
     }
 
     @GetMapping("/deleteMatiereById/{id}")
