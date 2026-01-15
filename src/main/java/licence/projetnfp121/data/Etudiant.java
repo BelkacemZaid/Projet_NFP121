@@ -28,11 +28,13 @@ public class Etudiant {
     @Column(name = "photo", length = 50, nullable = true)
     private String photo;
 
+
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "idClasse" , nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false) // j'utilise .eager aulieu de lazy
+    @JoinColumn(name = "idClasse" , nullable = true)
     @JsonProperty("classe") // je l'utilise pcq sur swagger il veux une classe alors que dans ma base de données c'est idClasse et pas classe
     private Classe idClasse;
+
 
     public Integer getId() {
         return id;

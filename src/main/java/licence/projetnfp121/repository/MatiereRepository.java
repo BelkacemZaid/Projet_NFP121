@@ -6,4 +6,13 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MatiereRepository extends JpaRepository<Matiere,Long> {
+
+    @Override
+    <S extends Matiere> S save(S entity);
+
+    @Override
+    void delete(Matiere entity);
+
+
 }
+
