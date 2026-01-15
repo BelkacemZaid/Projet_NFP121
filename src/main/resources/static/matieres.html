@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Matières</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-brand">📚 Gestion des Notes</div>
+    <ul class="nav-menu">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="classes.html">Classes</a></li>
+        <li><a href="etudiants.html">Étudiants</a></li>
+        <li><a href="matieres.html">Matières</a></li>
+        <li><a href="devoirs.html">Devoirs</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <h1>Gestion des Matières</h1>
+
+    <div class="actions">
+        <button class="btn btn-primary" onclick="openAddModal()">➕ Nouvelle Matière</button>
+    </div>
+
+    <div id="alert"></div>
+
+    <table id="matieresTable">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Dénomination</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody id="matieresBody">
+        <tr><td colspan="3" class="loading">Chargement...</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="matiereModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modalTitle">Nouvelle Matière</h2>
+            <span class="close" onclick="closeModal()">&times;</span>
+        </div>
+        <form id="matiereForm">
+            <input type="hidden" id="matiereId">
+            <div class="form-group">
+                <label>Dénomination *</label>
+                <input type="text" id="denomination" required>
+            </div>
+            <button type="submit" class="btn btn-success">Enregistrer</button>
+            <button type="button" class="btn btn-secondary" onclick="closeModal()">Annuler</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    const API_URL = 'http://localhost:8082';
+
+    async function loadMatieres() {
+        try {
+            const response = await fetch(`${API_URL}/matieres/getAllMatieres`);
+            const matieres = await response.json();
+
+            const tbody = document.getElementById('matieresBody');
+            tbody.innerHTML = '';
+
+            matieres.forEach(matiere => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                        <td>${matiere.id}</td>
+                        <td>${matiere.denomination}</td>
+                        <td>
+                            <button class="btn btn-secondary" onclick="editMatiere(${matiere.id})">✏️ Modifier</button>
+                            <button class="btn btn-danger" onclick="deleteMatiere(${matiere.id})">🗑️ Supprimer</button>
+                        </td>
+                    `;
+                tbody.appendChild(tr);
+            });
+        } catch (error) {
+            showAlert('Erreur lors du chargement des matières', 'error');
+        }
+    }
+
+    function openAddModal() {
+        document.getElementById('modalTitle').textContent = 'Nouvelle Matière';
+        document.getElementById('matiereForm').reset();
+        document.getElementById('matiereId').value = '';
+        document.getElementById('matiereModal').style.display = 'block';
+    }
+
+    function closeModal() {
+        document.getElementById('matiereModal').style.display = 'none';
+    }
+
+    document.getElementById('matiereForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const id = document.getElementById('matiereId').value;
+        const matiere = {
+            id: id ? parseInt(id) : null,
+            denomination: document.getElementById('denomination').value
+        };
+
+        try {
+            const url = id ? `${API_URL}/matieres/modify` : `${API_URL}/matieres/add`;
+            const method = id ? 'PUT' : 'POST';
+
+            await fetch(url, {
+                method: method,
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify(matiere)
+            });
+
+            showAlert('Matière enregistrée avec succès', 'success');
+            closeModal();
+            loadMatieres();
+        } catch (error) {
+            showAlert('Erreur lors de l\'enregistrement', 'error');
+        }
+    });
+
+    async function editMatiere(id) {
+        try {
+            const response = await fetch(`${API_URL}/matieres/getAllMatieres`);
+            const matieres = await response.json();
+            const matiere = matieres.find(m => m.id === id);
+
+            document.getElementById('modalTitle').textContent = 'Modifier Matière';
+            document.getElementById('matiereId').value = matiere.id;
+            document.getElementById('denomination').value = matiere.denomination;
+            document.getElementById('matiereModal').style.display = 'block';
+        } catch (error) {
+            showAlert('Erreur lors du chargement de la matière', 'error');
+        }
+    }
+
+    async function deleteMatiere(id) {
+        if (!confirm('Supprimer cette matière ?')) return;
+
+        try {
+            await fetch(`${API_URL}/matieres/deleteMatiereById/${id}`);
+            showAlert('Matière supprimée avec succès', 'success');
+            loadMatieres();
+        } catch (error) {
+            showAlert('Erreur : matière utilisée dans des devoirs', 'error');
+        }
+    }
+
+    function showAlert(message, type) {
+        const alertDiv = document.getElementById('alert');
+        alertDiv.innerHTML = `<div class="alert alert-${type}">${message}</div>`;
+        setTimeout(() => alertDiv.innerHTML = '', 3000);
+    }
+
+    loadMatieres();
+</script>
+</body>
+</html>

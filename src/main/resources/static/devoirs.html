@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Devoirs</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-brand">📚 Gestion des Notes</div>
+    <ul class="nav-menu">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="classes.html">Classes</a></li>
+        <li><a href="etudiants.html">Étudiants</a></li>
+        <li><a href="matieres.html">Matières</a></li>
+        <li><a href="devoirs.html">Devoirs</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <h1>Gestion des Devoirs</h1>
+
+    <div class="actions">
+        <button class="btn btn-primary" onclick="openAddModal()">➕ Nouveau Devoir</button>
+    </div>
+
+    <div id="alert"></div>
+
+    <table id="devoirsTable">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Description</th>
+            <th>Matière</th>
+            <th>Classe</th>
+            <th>Catégorie</th>
+            <th>Coefficient</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody id="devoirsBody">
+        <tr><td colspan="8" class="loading">Chargement...</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="devoirModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modalTitle">Nouveau Devoir</h2>
+            <span class="close" onclick="closeModal()">&times;</span>
+        </div>
+        <form id="devoirForm">
+            <div class="form-group">
+                <label>Description *</label>
+                <input type="text" id="description" required>
+            </div>
+            <div class="form-group">
+                <label>Classe *</label>
+                <select id="classe" required></select>
+            </div>
+            <div class="form-group">
+                <label>Matière *</label>
+                <select id="matiere" required></select>
+            </div>
+            <div class="form-group">
+                <label>Catégorie *</label>
+                <select id="categorie" required>
+                    <option value="CC">CC</option>
+                    <option value="Examen">Examen</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Coefficient *</label>
+                <input type="number" id="coef" step="0.1" value="1.0" required>
+            </div>
+            <button type="submit" class="btn btn-success">Enregistrer</button>
+            <button type="button" class="btn btn-secondary" onclick="closeModal()">Annuler</button>
+        </form>
+    </div>
+</div>
+
+<script src="devoirs.js"></script>
+</body>
+</html>

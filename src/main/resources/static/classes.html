@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Classes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-brand">📚 Gestion des Notes</div>
+    <ul class="nav-menu">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="classes.html">Classes</a></li>
+        <li><a href="etudiants.html">Étudiants</a></li>
+        <li><a href="matieres.html">Matières</a></li>
+        <li><a href="devoirs.html">Devoirs</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <h1>Gestion des Classes</h1>
+
+    <div class="actions">
+        <button class="btn btn-primary" onclick="openAddModal()">➕ Nouvelle Classe</button>
+    </div>
+
+    <div id="alert"></div>
+
+    <table id="classesTable">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Dénomination</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody id="classesBody">
+        <tr><td colspan="3" class="loading">Chargement...</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="classeModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modalTitle">Nouvelle Classe</h2>
+            <span class="close" onclick="closeModal()">&times;</span>
+        </div>
+        <form id="classeForm">
+            <input type="hidden" id="classeId">
+            <div class="form-group">
+                <label>Dénomination *</label>
+                <input type="text" id="denomination" required>
+            </div>
+            <button type="submit" class="btn btn-success">Enregistrer</button>
+            <button type="button" class="btn btn-secondary" onclick="closeModal()">Annuler</button>
+        </form>
+    </div>
+</div>
+
+<div id="bulletinModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Bulletin de Notes</h2>
+            <span class="close" onclick="closeBulletinModal()">&times;</span>
+        </div>
+        <div id="bulletinContent"></div>
+    </div>
+</div>
+
+<script src="classes.js"></script>
+</body>
+</html>
+>

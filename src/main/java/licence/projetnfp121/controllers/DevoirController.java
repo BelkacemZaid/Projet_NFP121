@@ -6,6 +6,8 @@ import licence.projetnfp121.data.Matiere;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 // a faire
 @RestController
 @RequestMapping("/devoir")
@@ -20,7 +22,10 @@ public class DevoirController {
 
     @PostMapping("/add")
     public void addDevoir(@RequestBody Devoir devoir) {
-        devoirService.addDevoir(devoir);
+
+        if (devoir.getCoef() != null) {
+            devoirService.addDevoir(devoir);
+        }
     }
 
     @PutMapping("/modify")
@@ -32,5 +37,11 @@ public class DevoirController {
     public void deleteMatiere(@PathVariable Long id) {
         devoirService.deleteDevoir(id);
     }
+
+    @GetMapping("/getAllDevoirs")  // PAS getAllDevoirs1
+    public List<Devoir> getAllDevoirs() {
+        return devoirService.getAllDevoirs();
+    }
+
 
 }

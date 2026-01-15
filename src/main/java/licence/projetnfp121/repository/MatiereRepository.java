@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MatiereRepository extends JpaRepository<Matiere,Long> {
 
-<<<<<<< Updated upstream
     @Override
     <S extends Matiere> S save(S entity);
 
@@ -15,9 +14,5 @@ public interface MatiereRepository extends JpaRepository<Matiere,Long> {
     void delete(Matiere entity);
 
 
-=======
-
-    @Override
-    <S extends Matiere> S save(S entity);
->>>>>>> Stashed changes
 }
+

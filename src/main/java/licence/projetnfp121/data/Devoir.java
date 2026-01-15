@@ -19,45 +19,35 @@ public class Devoir {
     private Integer id;
 
     @Size(max = 50)
-    @Column(name = "description", length = 50)
+    @Column(name = "description", length = 50,nullable = true)
     private String description;
 
     @Size(max = 50)
-    @Column(name = "categorie", length = 50)
+    @Column(name = "categorie", length = 50,nullable = true)
     private String categorie;
 
-    @Column(name = "date_crea")
+    @Column(name = "date_crea",nullable = true)
     private LocalDate dateCrea;
 
-    @Column(name = "coef", precision = 15, scale = 2)
+    @Column(name = "coef", precision = 15, scale = 2,nullable = true)
     private BigDecimal coef;
 
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "idClasse", nullable = false)
-    private Classe idClasse;
-<<<<<<< Updated upstream
-
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "idMat", nullable = false)
-    private Matiere idMat;
-=======
-
-    @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "idMat", nullable = false)
-    private Matiere idMat;
-
-    @Column(name = "note", precision = 15, scale = 2)
+    @Column(name = "note", precision = 15, scale = 2,nullable = true)
     private BigDecimal note;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JoinColumn(name = "idEtudiant", nullable = false)
-    private Classe idEtudiant;
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "idClasse", nullable = false)
+    private Classe idClasse;
 
->>>>>>> Stashed changes
+    @NotNull
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "idMat", nullable = false)
+    private Matiere idMat;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "idEtudiant")
+    private Etudiant etudiant;
+
 
 }

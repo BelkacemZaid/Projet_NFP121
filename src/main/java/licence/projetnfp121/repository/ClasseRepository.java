@@ -9,15 +9,13 @@ import java.util.List;
 @Repository
 public interface ClasseRepository extends JpaRepository<Classe, Long> {
 
+
 //    @Override
-//    <S extends Classe> S save(S entity);
-
-    @Override
-    void delete(Classe entity);
-
-    List<Classe> findById(Integer id);
-
-    List<Classe> findAll();
+//    void delete(Classe entity);
+//
+//    List<Classe> findById(Integer id);
+//
+//    List<Classe> findAll();
 
 
 

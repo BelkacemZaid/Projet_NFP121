@@ -10,8 +10,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-
-@Table(name = "Etudiant")
 public class Etudiant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,58 +24,55 @@ public class Etudiant {
     @Column(name = "prenom", length = 50, nullable = true)
     private String prenom;
 
-
     @Size(max = 50)
     @Column(name = "photo", length = 50, nullable = true)
     private String photo;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "classe")
-    private Classe classe;
 
     @NotNull
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "idClasse" , nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER, optional = false) // j'utilise .eager aulieu de lazy
+    @JoinColumn(name = "idClasse" , nullable = true)
     @JsonProperty("classe") // je l'utilise pcq sur swagger il veux une classe alors que dans ma base de données c'est idClasse et pas classe
     private Classe idClasse;
 
-//    public Integer getId() {
-//        return id;
-//    }
-//
-//    public void setId(Integer id) {
-//        this.id = id;
-//    }
-//
-//    public String getNom() {
-//        return nom;
-//    }
-//
-//    public void setNom(String nom) {
-//        this.nom = nom;
-//    }
-//
-//    public String getPrenom() {
-//        return prenom;
-//    }
-//
-//    public void setPrenom(String prenom) {
-//        this.prenom = prenom;
-//    }
-//
-//    public String getPhoto() {
-//        return photo;
-//    }
-//
-//    public void setPhoto(String photo) {
-//        this.photo = photo;
-//    }
-//
-//    public Classe getIdClasse() {
-//        return idClasse;
-//    }
-//
-//    public void setIdClasse(Classe idClasse) {
-//        this.idClasse = idClasse;
-//    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
+    public Classe getIdClasse() {
+        return idClasse;
+    }
+
+    public void setIdClasse(Classe idClasse) {
+        this.idClasse = idClasse;
+    }
 }

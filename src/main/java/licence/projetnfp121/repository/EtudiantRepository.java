@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface EtudiantRepository extends JpaRepository<Etudiant, Long> {
@@ -15,7 +16,7 @@ public interface EtudiantRepository extends JpaRepository<Etudiant, Long> {
 
     List<Etudiant> findAllById(Integer id);
 
-    List<Etudiant> findAll();
+//    List<Etudiant> findAll();
 
 
 
@@ -28,6 +29,14 @@ public interface EtudiantRepository extends JpaRepository<Etudiant, Long> {
 
     List<Etudiant> findByNom(String nom);
 
+    Optional<Etudiant> findById(Integer id);
+
+
+    List<Etudiant> findByIdClasseNull();
+
+    List<Etudiant> getEtudiantsByIdClasse(Classe idClasse);
+
+    List<Etudiant> findByIdClasse_Id(Integer idClasse);
 
 
 }

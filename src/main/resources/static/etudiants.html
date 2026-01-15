@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Étudiants</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav class="navbar">
+    <div class="nav-brand">📚 Gestion des Notes</div>
+    <ul class="nav-menu">
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="classes.html">Classes</a></li>
+        <li><a href="etudiants.html">Étudiants</a></li>
+        <li><a href="matieres.html">Matières</a></li>
+        <li><a href="devoirs.html">Devoirs</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <h1>Gestion des Étudiants</h1>
+
+    <div class="actions">
+        <button class="btn btn-primary" onclick="openAddModal()">➕ Nouvel Étudiant</button>
+    </div>
+
+    <div id="alert"></div>
+
+    <table id="etudiantsTable">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Classe</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody id="etudiantsBody">
+        <tr><td colspan="5" class="loading">Chargement...</td></tr>
+        </tbody>
+    </table>
+</div>
+
+<div id="etudiantModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modalTitle">Nouvel Étudiant</h2>
+            <span class="close" onclick="closeModal()">&times;</span>
+        </div>
+        <form id="etudiantForm">
+            <input type="hidden" id="etudiantId">
+            <div class="form-group">
+                <label>Nom *</label>
+                <input type="text" id="nom" required>
+            </div>
+            <div class="form-group">
+                <label>Prénom *</label>
+                <input type="text" id="prenom" required>
+            </div>
+            <div class="form-group">
+                <label>Photo (URL)</label>
+                <input type="text" id="photo">
+            </div>
+            <div class="form-group">
+                <label>Classe</label>
+                <select id="classe">
+                    <option value="">-- Aucune classe --</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-success">Enregistrer</button>
+            <button type="button" class="btn btn-secondary" onclick="closeModal()">Annuler</button>
+        </form>
+    </div>
+</div>
+
+<div id="releveModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Relevé de Notes</h2>
+            <span class="close" onclick="closeReleveModal()">&times;</span>
+        </div>
+        <div id="releveContent"></div>
+    </div>
+</div>
+
+<script src="etudiants.js"></script>
+</body>
+</html>
